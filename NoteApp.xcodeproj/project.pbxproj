@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3352DF02524931E00213EC8 /* DetailNoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3352DEF2524931E00213EC8 /* DetailNoteController.swift */; };
 		C3B5E5B525234C0300FC8C27 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5E5B425234C0200FC8C27 /* AppDelegate.swift */; };
 		C3B5E5B725234C0300FC8C27 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5E5B625234C0300FC8C27 /* SceneDelegate.swift */; };
 		C3B5E5B925234C0300FC8C27 /* NotesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5E5B825234C0300FC8C27 /* NotesController.swift */; };
@@ -19,11 +20,12 @@
 		C3B5E5D32523699900FC8C27 /* UIVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5E5D22523699900FC8C27 /* UIVIewController.swift */; };
 		C3B5E5D82523739D00FC8C27 /* NoteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5E5D62523739D00FC8C27 /* NoteViewCell.swift */; };
 		C3B5E5D92523739D00FC8C27 /* NoteViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B5E5D72523739D00FC8C27 /* NoteViewCell.xib */; };
-		C3B5E5DB25237C5300FC8C27 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5E5DA25237C5300FC8C27 /* Note.swift */; };
+		C3B5E5DB25237C5300FC8C27 /* NoteExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5E5DA25237C5300FC8C27 /* NoteExtension.swift */; };
 		C3B5E5DD25238BBC00FC8C27 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5E5DC25238BBC00FC8C27 /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C3352DEF2524931E00213EC8 /* DetailNoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNoteController.swift; sourceTree = "<group>"; };
 		C3B5E5B125234C0200FC8C27 /* NoteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3B5E5B425234C0200FC8C27 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3B5E5B625234C0300FC8C27 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +40,7 @@
 		C3B5E5D22523699900FC8C27 /* UIVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVIewController.swift; sourceTree = "<group>"; };
 		C3B5E5D62523739D00FC8C27 /* NoteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewCell.swift; sourceTree = "<group>"; };
 		C3B5E5D72523739D00FC8C27 /* NoteViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoteViewCell.xib; sourceTree = "<group>"; };
-		C3B5E5DA25237C5300FC8C27 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		C3B5E5DA25237C5300FC8C27 /* NoteExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteExtension.swift; sourceTree = "<group>"; };
 		C3B5E5DC25238BBC00FC8C27 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +102,7 @@
 			children = (
 				C3B5E5B825234C0300FC8C27 /* NotesController.swift */,
 				C3B5E5CF2523666D00FC8C27 /* AddNoteController.swift */,
+				C3352DEF2524931E00213EC8 /* DetailNoteController.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -108,7 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				C3B5E5D22523699900FC8C27 /* UIVIewController.swift */,
-				C3B5E5DA25237C5300FC8C27 /* Note.swift */,
+				C3B5E5DA25237C5300FC8C27 /* NoteExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -204,12 +207,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3B5E5B925234C0300FC8C27 /* NotesController.swift in Sources */,
+				C3352DF02524931E00213EC8 /* DetailNoteController.swift in Sources */,
 				C3B5E5B525234C0300FC8C27 /* AppDelegate.swift in Sources */,
 				C3B5E5B725234C0300FC8C27 /* SceneDelegate.swift in Sources */,
 				C3B5E5CC2523506100FC8C27 /* CoreDataManager.swift in Sources */,
 				C3B5E5BF25234C0300FC8C27 /* NoteApp.xcdatamodeld in Sources */,
 				C3B5E5DD25238BBC00FC8C27 /* Note.swift in Sources */,
-				C3B5E5DB25237C5300FC8C27 /* Note.swift in Sources */,
+				C3B5E5DB25237C5300FC8C27 /* NoteExtension.swift in Sources */,
 				C3B5E5D32523699900FC8C27 /* UIVIewController.swift in Sources */,
 				C3B5E5D82523739D00FC8C27 /* NoteViewCell.swift in Sources */,
 				C3B5E5D02523666D00FC8C27 /* AddNoteController.swift in Sources */,

@@ -29,15 +29,10 @@ class AddNoteController: UIViewController {
             showAlert(with: "Woops", content: "Please name your notes!")
             return
         }
+
         
-        let note = Note(context: CoreDataManager.shared.managedContext)
-        
-        note.createdAt = Date()
-        note.updatedAt = Date()
-        note.contents = contentField.text
-        note.title = addTextField.text
+        CoreDataManager.shared.saveNoteCoreData(with: NoteModel(title: titleField, contents: contentField.text))
     
-        print(note)
         _ = navigationController?.popViewController(animated: true)
     }
 }

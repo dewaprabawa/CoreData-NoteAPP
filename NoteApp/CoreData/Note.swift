@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Note {
+struct NoteModel {
     let title:String?
     let contents:String?
-    let updatedAt:String?
-    let createdAt:String?
+    let updatedAt = Date()
+    let createdAt = Date()
 }

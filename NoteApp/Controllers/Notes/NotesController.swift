@@ -16,18 +16,7 @@ class NotesController: UIViewController{
     @IBOutlet weak var messageNoContentLabel:UILabel!
     
 
-    private lazy var fetchedResultsController: NSFetchedResultsController<Note> = {
-        
-        let fetchRequest:NSFetchRequest<Note> = Note.fetchRequest()
-        
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(Note.updatedAt), ascending: false)]
-        
-        let fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataManager.shared.managedContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        fetchedResultController.delegate = self
-        
-        return fetchedResultController
-    }()
+    private var notes = [AddedNote]()
     
     //MARK: Segues
     private enum Segue{
@@ -36,18 +25,13 @@ class NotesController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
-        fetchNote()
-        
-
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        fetchNote()
-        tableView.reloadData()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        fetchNotes()
         updateView()
     }
     
@@ -66,13 +50,10 @@ class NotesController: UIViewController{
     }
     
     private var isNoteCount:Bool{
-        guard let notes = fetchedResultsController.fetchedObjects else {
-            return false
-        }
         return notes.count > 0
     }
     
-    private let estimatedRowHeight = CGFloat(44.0)
+    private let estimatedRowHeight = CGFloat(55.0)
 
     
     private lazy var updatedAtDateFormatter: DateFormatter = {
@@ -91,13 +72,18 @@ class NotesController: UIViewController{
     }
     
     
-    private func fetchNote(){
-        do{
-            try fetchedResultsController.performFetch()
-        }catch{
-            print("Unable to Perform Fetch Request")
-            print("\(error), \(error.localizedDescription)")
+    private func fetchNotes(){
+        
+        CoreDataManager.shared.loadNoteAfterFetch { (result) in
+            switch(result){
+            case .success(let downloadedNote):
+                self.notes = downloadedNote
+                self.tableView.reloadData()
+            case .failure(_):
+                fatalError("failed to load note in tableView")
+            }
         }
+        
     }
 
 }
@@ -106,37 +92,53 @@ class NotesController: UIViewController{
 extension NotesController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard let sections = fetchedResultsController.sections else { return 0 }
-        return sections.count
+        return 1
     }
 
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let section = fetchedResultsController.sections?[section] else { return 0}
-        return section.numberOfObjects
+        return notes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        tableView.rowHeight = estimatedRowHeight
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NoteViewCell.reuseIdentifier, for: indexPath) as? NoteViewCell else {
             fatalError("Unexpected Index Path")
         }
         
-        let note = fetchedResultsController.object(at: indexPath)
-        cell.textLabel?.text = note.title
+        let note = notes[indexPath.row]
+        cell.titleLabel.text = note.title
+        cell.contentLable.text = note.contents
+        cell.dateLabel.text = updatedAtDateFormatter.string(from: note.updatedAt!)
         return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            notes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            CoreDataManager.shared.deleteNotInCoreData(at: indexPath)
+        }
+        
+    
+        tableView.reloadRows(at: [indexPath], with: .fade)
+        tableView.insertRows(at: [indexPath], with: .fade)
+    
+       
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let edittedNote = notes[indexPath.row]
+     
+        guard let vc = storyboard?.instantiateViewController(identifier: "DetailNoteController") as? DetailNoteController else {
+            return
+        }
+        vc.currentNote = edittedNote
+        _ = navigationController?.pushViewController(vc, animated: true)
     }
     
      
 }
 
 
-extension NotesController: NSFetchedResultsControllerDelegate {
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tableView.endUpdates()
-//        updateView()
-//    }
-//
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        tableView.beginUpdates()
-//    }
-}
+

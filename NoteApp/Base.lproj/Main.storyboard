@@ -42,11 +42,48 @@
                     <connections>
                         <outlet property="messageNoContentLabel" destination="Yza-xF-8kW" id="Rb1-fa-mbb"/>
                         <outlet property="tableView" destination="ShS-nD-z6h" id="mVk-kP-1Qu"/>
+                        <segue destination="NyD-AU-gi5" kind="show" identifier="DetailNote" id="QLC-vi-i1F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.0289855072465" y="97.767857142857139"/>
+        </scene>
+        <!--Note-->
+        <scene sceneID="ZSL-os-OF7">
+            <objects>
+                <viewController storyboardIdentifier="DetailNoteController" id="NyD-AU-gi5" customClass="DetailNoteController" customModule="NoteApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mtC-Yb-l9M">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UnT-iz-zSI" userLabel="addTextField">
+                                <rect key="frame" x="20" y="88" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wuf-ix-Hew" userLabel="contentField">
+                                <rect key="frame" x="20" y="130" width="374" height="191"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="IFV-H0-D7s"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Note" id="uIE-zd-77y"/>
+                    <connections>
+                        <outlet property="addTextField" destination="UnT-iz-zSI" id="PD5-HS-azn"/>
+                        <outlet property="contentsField" destination="wuf-ix-Hew" id="Bi1-J7-0Jm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t2g-Ye-n81" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1931.8840579710147" y="567.1875"/>
         </scene>
         <!--Add Notes-->
         <scene sceneID="D9A-Wf-7Di">
@@ -89,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X5c-YL-QKM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1931.8840579710147" y="97.767857142857139"/>
+            <point key="canvasLocation" x="1933" y="-113"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ntz-M5-nAG">

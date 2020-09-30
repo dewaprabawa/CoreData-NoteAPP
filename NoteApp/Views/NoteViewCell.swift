@@ -15,4 +15,10 @@ class NoteViewCell: UITableViewCell {
     static func nib() -> UINib{
         return UINib(nibName: String(describing: self), bundle: nil)
     }
+    
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contentLable: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var cellViewColor: UIView!
 }
